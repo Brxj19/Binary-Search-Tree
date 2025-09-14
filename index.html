@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BinarySearchTree C++ Library Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            /* New "Black & Neon Blue" Palette */
+            --bg-main: #000000; /* Pure Black */
+            --bg-sidebar: #111111; /* Very dark gray for sidebar */
+            --text-main: #f3f4f6; /* gray-100 */
+            --text-secondary: #9ca3af; /* gray-400 */
+            --border-color: #374151; /* gray-700 */
+            --accent-color: #38bdf8; /* sky-400 (Neon Blue) */
+            --accent-hover: #7dd3fc; /* sky-300 (Lighter Neon Blue) */
+            --logo-h-color: #2dd4bf; /* teal-400 for the '.h' */
+            --code-bg: #374151; /* gray-700 */
+            --code-snippet-bg: #1F2937; /* gray-800 for API snippets */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+        }
+        .sidebar-link {
+            transition: all 0.2s ease-in-out;
+            border-left: 3px solid transparent;
+            color: var(--text-secondary);
+        }
+        .sidebar-link:hover {
+            background-color: var(--code-bg);
+            border-left-color: var(--accent-hover);
+            color: var(--text-main);
+        }
+        .sidebar-link.active {
+            background-color: rgba(56, 189, 248, 0.1); /* neon blue transparent */
+            border-left-color: var(--accent-color);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        h2 {
+            font-size: 1.875rem; font-weight: 700;
+            margin-bottom: 1.5rem; padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            color: #f9fafb; /* gray-50 */
+        }
+        h3 {
+            font-size: 1.5rem; font-weight: 600;
+            margin-top: 2rem; margin-bottom: 1rem;
+            color: #f9fafb; /* gray-50 */
+        }
+        pre {
+            background-color: var(--code-bg); color: var(--text-main);
+            padding: 1rem; border-radius: 0.5rem;
+            overflow-x: auto; position: relative;
+        }
+        code { font-family: 'Courier New', Courier, monospace; }
+        .copy-btn {
+            position: absolute; top: 0.5rem; right: 0.5rem;
+            background-color: #4b5563; /* gray-600 */
+            color: var(--text-main); border: none;
+            padding: 0.25rem 0.5rem; border-radius: 0.25rem;
+            font-size: 0.75rem; cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .copy-btn:hover { background-color: #6b7280; /* gray-500 */ }
+        .api-item {
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem; margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .api-header {
+            background-color: var(--bg-sidebar);
+            padding: 0.75rem 1.25rem; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .api-header:hover { background-color: #374151; /* gray-700 */ }
+        .api-body {
+            display: none; padding: 1.25rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .api-body h4 {
+            font-size: 0.875rem; font-weight: 600;
+            margin-top: 1rem; margin-bottom: 0.5rem;
+            color: #d1d5db; /* gray-300 */
+        }
+        .api-body pre {
+            background-color: var(--code-snippet-bg);
+            padding: 0.75rem; font-size: 0.8rem;
+            border: 1px solid var(--border-color);
+        }
+        .api-arrow { transition: transform 0.2s; }
+        .api-item.open .api-arrow { transform: rotate(90deg); }
+        .text-logo-h { color: var(--logo-h-color); }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased">
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-full md:w-64 bg-sidebar border-r border-border-color p-4 md:p-6 md:fixed md:h-full z-20 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+            <h1 class="text-2xl font-bold text-white mb-6">BST<span class="text-logo-h">.h</span> Docs</h1>
+            <nav id="nav-menu" class="flex flex-col space-y-2">
+                <a href="#overview" class="sidebar-link p-2 rounded-md">Overview</a>
+                <a href="#getting-started" class="sidebar-link p-2 rounded-md">Getting Started</a>
+                <a href="#api-reference" class="sidebar-link p-2 rounded-md">References</a>
+                <a href="#examples" class="sidebar-link p-2 rounded-md">Usage Examples</a>
+                <a href="#performance" class="sidebar-link p-2 rounded-md">Performance</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 md:ml-64 p-6 md:p-10">
+            <!-- Mobile Header -->
+            <div class="md:hidden flex justify-between items-center mb-6 pb-4 border-b border-border-color">
+                <h1 class="text-2xl font-bold text-white">BST<span class="text-logo-h">.h</span> Docs</h1>
+                <button id="menu-toggle" class="p-2 rounded-md text-secondary hover:bg-code-bg focus:outline-none focus:ring-2 focus:ring-accent-color">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+            
+            <!-- Overview Section -->
+            <section id="overview" class="content-section">
+                <h2>Overview</h2>
+                <p class="text-secondary mb-4">
+                    `BinarySearchTree` is a modern, header-only C++17 library providing a node-based binary search tree. It is built with modern C++ practices, including smart pointers for automatic memory management (`std::unique_ptr`), move semantics, and emplacement for optimal performance.
+                </p>
+                <p class="text-secondary">
+                    This library is ideal for scenarios where you need fast insertion, deletion, and lookup of sorted data.
+                </p>
+                <h3>Features</h3>
+                <ul class="list-disc list-inside space-y-2 text-secondary">
+                    <li><b>Automatic Memory Management</b>: No manual `new` or `delete` required.</li>
+                    <li><b>Sorted Order</b>: Elements are always kept in sorted order automatically.</li>
+                    <li><b>In-place Construction</b>: `emplace` functions construct objects directly in the tree.</li>
+                    <li><b>STL-like Interface</b>: Follows standard library conventions for methods like `insert`, `find`, `begin`, `end`, etc.</li>
+                    <li><b>Bidirectional Iterators</b>: Allows for forward and backward traversal through the sorted elements.</li>
+                    <li><b>Build from Traversals</b>: Reconstruct a tree from pre-order/in-order or post-order/in-order traversals.</li>
+                </ul>
+            </section>
+            
+            <!-- Getting Started Section -->
+            <section id="getting-started" class="content-section">
+                <h2>Getting Started</h2>
+                <h3>Prerequisites</h3>
+                <p class="text-secondary">A C++ compiler that supports the <b>C++17 standard</b> or newer (e.g., GCC 7+, Clang 5+).</p>
+
+                <h3>Compilation</h3>
+                <p class="text-secondary mb-4">Since this is a header-only library, there is no need to build it separately. Simply include `bst.h` in your project and compile your source files with the C++17 standard enabled.</p>
+                
+                <h4>Example compilation command:</h4>
+                <div class="code-container">
+                    <pre><code class="language-bash">g++ -std=c++17 your_main_file.cpp -o your_program</code></pre>
+                </div>
+
+                <h3>Basic Usage</h3>
+                <div class="code-container">
+                    <pre><code class="language-cpp">#include &lt;iostream&gt;
+#include "bst.h"
+
+int main() {
+    // Create a tree using an initializer list
+    BinarySearchTree&lt;int&gt; bst = {50, 30, 70, 20, 40};
+
+    // Add an element
+    bst.insert(80);
+
+    // Iterate and print elements (always in sorted order)
+    std::cout << "Tree contents: ";
+    for (const auto& val : bst) {
+        std::cout << val << " ";
+    }
+    std::cout << std::endl; // Output: 20 30 40 50 70 80
+
+    // Check for an element
+    if (bst.contains(40)) {
+        std::cout << "The tree contains the value 40." << std::endl;
+    }
+
+    // Remove an element
+    bst.erase(30);
+
+    return 0;
+}</code></pre>
+                </div>
+            </section>
+            
+            <!-- API Reference Section -->
+            <section id="api-reference" class="content-section">
+                <h2>API Reference</h2>
+                <p class="text-secondary mb-6">Click on any function to expand its details and view a usage example.</p>
+                <div id="api-container"></div>
+            </section>
+
+            <!-- Examples Section -->
+            <section id="examples" class="content-section">
+                <h2>Usage Examples</h2>
+                <h3>Emplacement with Custom Objects</h3>
+                <p class="text-secondary mb-4">Emplacement constructs objects directly within the tree, avoiding temporary objects. This is highly efficient for complex types.</p>
+                <div class="code-container">
+                    <pre><code class="language-cpp">struct Book {
+    std::string title;
+    int year;
+    Book(std::string t, int y) : title(std::move(t)), year(y) {}
+    bool operator<(const Book& other) const { return title < other.title; }
+};
+
+BinarySearchTree&lt;Book&gt; library;
+// Constructs a Book in-place. No temporary Book object is created.
+library.emplace("The Hobbit", 1937);</code></pre>
+                </div>
+
+                <h3>Building from Traversal Sequences</h3>
+                <p class="text-secondary mb-4">You can reconstruct a tree's exact structure if you have its in-order traversal plus either its pre-order or post-order traversal.</p>
+                <div class="code-container">
+                    <pre><code class="language-cpp">std::vector&lt;int&gt; preorder = {10, 5, 3, 7};
+std::vector&lt;int&gt; inorder  = {3, 5, 7, 10};
+
+// Reconstruct the tree from pre-order and in-order sequences
+BinarySearchTree&lt;int&gt; reconstructedTree(preorder, inorder);
+
+// Iterate to confirm the sorted order
+for (int val : reconstructedTree) {
+    std::cout << val << " "; // Prints: 3 5 7 10
+}
+</code></pre>
+                </div>
+
+                <h3>Using Traversals</h3>
+                <p class="text-secondary mb-4">You can visit every node in a specific order using the traversal functions, which accept a lambda or other callable.</p>
+                <div class="code-container">
+                    <pre><code class="language-cpp">BinarySearchTree&lt;int&gt; bst = {10, 5, 15};
+
+std::cout << "Pre-order: ";
+bst.pre_order_traversal([](int val){ std::cout << val << " "; }); // 10 5 15
+
+std::cout << "\nPost-order: ";
+bst.post_order_traversal([](int val){ std::cout << val << " "; }); // 5 15 10
+</code></pre>
+                </div>
+            </section>
+            
+            <!-- Performance Section -->
+            <section id="performance" class="content-section">
+                <h2>Performance & Time Complexity</h2>
+                <p class="text-secondary mb-4">Performance for a Binary Search Tree depends on the height of the tree. For a balanced tree, the height is logarithmic. In the worst case (an unbalanced, list-like tree), the height is linear.</p>
+                 <div class="overflow-x-auto">
+                    <table class="w-full min-w-max text-left border border-border-color rounded-lg">
+                        <thead class="bg-sidebar">
+                            <tr>
+                                <th class="p-3 border-b border-border-color">Operation</th>
+                                <th class="p-3 border-b border-border-color">Average Case (Balanced Tree)</th>
+                                <th class="p-3 border-b border-border-color">Worst Case (Unbalanced Tree)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="complexity-table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        const apiData = {
+            "Lifecycle & Constructors": [
+                { name: "BinarySearchTree()", desc: "Creates an empty tree.", code: "BinarySearchTree&lt;int&gt; bst;" },
+                { name: "BinarySearchTree(const BinarySearchTree& other)", desc: "Copy constructor.", code: "BinarySearchTree&lt;int&gt; bst2 = bst1;" },
+                { name: "BinarySearchTree(BinarySearchTree&& other)", desc: "Move constructor.", code: "BinarySearchTree&lt;int&gt; bst2 = std::move(bst1);" },
+                { name: "BinarySearchTree(std::initializer_list&lt;T&gt; ilist)", desc: "Constructs from an initializer list.", code: "BinarySearchTree&lt;int&gt; bst = {10, 5, 15};" },
+                { name: "BinarySearchTree(preorder, inorder)", desc: "Constructs from pre-order and in-order traversals.", code: "BinarySearchTree&lt;int&gt; bst(pre, in);" },
+                { name: "BinarySearchTree(inorder, postorder, bool)", desc: "Constructs from in-order and post-order traversals.", code: "BinarySearchTree&lt;int&gt; bst(in, post, true);" }
+            ],
+            "Capacity": [
+                { name: "size()", desc: "Returns the number of elements. (O(1))", code: "size_t count = bst.size();" },
+                { name: "empty()", desc: "Checks if the tree is empty. (O(1))", code: "if (bst.empty()) { /* ... */ }" }
+            ],
+            "Modifiers": [
+                { name: "insert(const T& value)", desc: "Adds an element to the tree (copy).", code: "bst.insert(42);" },
+                { name: "insert(T&& value)", desc: "Adds an element to the tree (move).", code: "bst.insert(std::move(my_val));" },
+                { name: "emplace(Args&&... args)", desc: "Constructs an element in-place.", code: "bst.emplace(10, \"Item\");" },
+                { name: "erase(const T& key)", desc: "Removes the element matching the key.", code: "bst.erase(42);" },
+                { name: "clear()", desc: "Removes all elements from the tree.", code: "bst.clear();" }
+            ],
+            "Lookup": [
+                { name: "find(const T& key)", desc: "Returns an iterator to the element, or `end()` if not found.", code: "auto it = bst.find(42);\nif (it != bst.end()) { /* ... */ }" },
+                { name: "contains(const T& key)", desc: "Returns true if the element exists, false otherwise.", code: "if (bst.contains(42)) { /* ... */ }" }
+            ],
+            "Iterators": [
+                { name: "begin() / end()", desc: "Returns mutable bidirectional iterators for in-order traversal.", code: "for (auto& val : bst) { val *= 2; }" },
+                { name: "cbegin() / cend()", desc: "Returns constant bidirectional iterators for in-order traversal.", code: "for (const auto& val : bst) { std::cout << val; }" }
+            ],
+            "Traversals": [
+                 { name: "in_order_traversal(func)", desc: "Visits nodes in Left-Root-Right order (sorted).", code: "bst.in_order_traversal(my_func);" },
+                 { name: "pre_order_traversal(func)", desc: "Visits nodes in Root-Left-Right order.", code: "bst.pre_order_traversal(my_func);" },
+                 { name: "post_order_traversal(func)", desc: "Visits nodes in Left-Right-Root order.", code: "bst.post_order_traversal(my_func);" }
+            ]
+        };
+
+        const complexityData = [
+            { op: "Access / Search", avg: "O(log N)", worst: "O(N)" },
+            { op: "Insertion", avg: "O(log N)", worst: "O(N)" },
+            { op: "Deletion", avg: "O(log N)", worst: "O(N)" },
+            { op: "size(), empty()", avg: "O(1)", worst: "O(1)" },
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.sidebar-link');
+            const sections = document.querySelectorAll('.content-section');
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.getElementById('menu-toggle');
+
+            function updateContent(hash) {
+                if (!hash) hash = '#overview';
+                
+                navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === hash));
+                sections.forEach(section => section.classList.toggle('active', '#' + section.id === hash));
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    history.pushState(null, null, targetId);
+                    updateContent(targetId);
+                     if (window.innerWidth < 768) {
+                        sidebar.classList.add('-translate-x-full');
+                    }
+                });
+            });
+
+            window.addEventListener('popstate', () => updateContent(window.location.hash));
+
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('-translate-x-full');
+            });
+            
+            const apiContainer = document.getElementById('api-container');
+            for (const category in apiData) {
+                const categoryHeader = document.createElement('h3');
+                categoryHeader.textContent = category;
+                apiContainer.appendChild(categoryHeader);
+
+                apiData[category].forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'api-item';
+                    let codeBlockHTML = item.code ? `<h4>Usage Example:</h4><pre><code class="language-cpp">${item.code}</code></pre>` : '';
+                    itemDiv.innerHTML = `
+                        <div class="api-header">
+                            <code class="font-semibold" style="color: var(--accent-color);">${item.name}</code>
+                            <span class="api-arrow text-slate-500">&#9654;</span>
+                        </div>
+                        <div class="api-body">
+                            <p class="text-secondary">${item.desc}</p>
+                            ${codeBlockHTML}
+                        </div>`;
+                    apiContainer.appendChild(itemDiv);
+                });
+            }
+            
+            apiContainer.addEventListener('click', function(e) {
+                const header = e.target.closest('.api-header');
+                if (header) {
+                    const item = header.parentElement;
+                    item.classList.toggle('open');
+                    const body = item.querySelector('.api-body');
+                    body.style.display = item.classList.contains('open') ? 'block' : 'none';
+                }
+            });
+
+            const complexityTableBody = document.getElementById('complexity-table-body');
+            complexityData.forEach(item => {
+                 const getBadge = (complexity) => {
+                    if (complexity.includes('log N')) return `<span class="bg-sky-900 text-sky-300 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">${complexity}</span>`;
+                    if (complexity === 'O(1)') return `<span class="bg-teal-900 text-teal-300 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">${complexity}</span>`;
+                    if (complexity === 'O(N)') return `<span class="bg-amber-900 text-amber-300 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">${complexity}</span>`;
+                    return complexity;
+                };
+
+                const row = document.createElement('tr');
+                row.className = 'border-b border-border-color last:border-b-0';
+                row.innerHTML = `<td class="p-3 font-semibold">${item.op}</td><td class="p-3">${getBadge(item.avg)}</td><td class="p-3">${getBadge(item.worst)}</td>`;
+                complexityTableBody.appendChild(row);
+            });
+
+            document.querySelectorAll('pre').forEach(block => {
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = 'Copy';
+                block.appendChild(copyBtn);
+
+                copyBtn.addEventListener('click', () => {
+                    const code = block.querySelector('code').innerText;
+                    navigator.clipboard.writeText(code).then(() => {
+                        copyBtn.textContent = 'Copied!';
+                        setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
+                    });
+                });
+            });
+
+            updateContent(window.location.hash || '#overview');
+        });
+    </script>
+</body>
+</html>
+
