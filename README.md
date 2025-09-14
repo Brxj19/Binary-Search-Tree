@@ -7,7 +7,7 @@
 
 This library is ideal for scenarios where you need fast insertion, deletion, and lookup of sorted data.
 
-For a full, interactive documentation, open the [`index.html`](index.html) file in your browser.
+For a full, interactive documentation, open the [`BST.h Docs`]([index.html](https://brxj19.github.io/Binary-Search-Tree/)).
 
 ## Features
 
