@@ -3,190 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BinarySearchTree.h Documentation</title>
-    <style>
-        :root {
-            --page: #f7f2e8;
-            --panel: #fffdf8;
-            --text: #1f2933;
-            --muted: #52606d;
-            --line: #d9cbb4;
-            --accent: #0f766e;
-            --accent-strong: #134e4a;
-            --code: #f0e6d2;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Georgia, "Times New Roman", serif;
-            background:
-                radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 34%),
-                linear-gradient(180deg, #fbf7ef 0%, var(--page) 100%);
-            color: var(--text);
-        }
-
-        a {
-            color: var(--accent-strong);
-        }
-
-        .page {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 32px 20px 56px;
-        }
-
-        .hero {
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            padding: 32px;
-            box-shadow: 0 18px 48px rgba(31, 41, 51, 0.08);
-        }
-
-        .eyebrow {
-            font-size: 0.9rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin: 0 0 8px;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: clamp(2.2rem, 5vw, 4rem);
-            line-height: 1.05;
-        }
-
-        .lead {
-            max-width: 760px;
-            font-size: 1.15rem;
-            line-height: 1.7;
-            color: var(--muted);
-            margin: 18px 0 0;
-        }
-
-        .note {
-            margin-top: 24px;
-            padding: 16px 18px;
-            border-left: 4px solid var(--accent);
-            background: #f3eee3;
-            color: var(--text);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 18px;
-            margin-top: 28px;
-        }
-
-        .card {
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            padding: 20px;
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent);
-            box-shadow: 0 16px 28px rgba(15, 118, 110, 0.12);
-        }
-
-        .card h2 {
-            margin: 0 0 10px;
-            font-size: 1.3rem;
-        }
-
-        .card p {
-            margin: 0;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        .section {
-            margin-top: 28px;
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            padding: 28px 32px;
-        }
-
-        .section h2 {
-            margin-top: 0;
-            margin-bottom: 14px;
-            font-size: 1.7rem;
-        }
-
-        pre {
-            margin: 0;
-            overflow-x: auto;
-            background: var(--code);
-            border: 1px solid var(--line);
-            border-radius: 12px;
-            padding: 16px;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        code {
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-        }
-
-        ul {
-            padding-left: 20px;
-            color: var(--muted);
-            line-height: 1.7;
-        }
-
-        .footer {
-            margin-top: 24px;
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-    </style>
+    <title>BinarySearchTree.h</title>
+    <link rel="stylesheet" href="docs/assets/site.css">
 </head>
 <body>
     <div class="page">
-        <section class="hero">
-            <p class="eyebrow">Header-only C++17 Library</p>
-            <h1>BinarySearchTree.h</h1>
-            <p class="lead">
-                A clean, reusable Binary Search Tree for C++17 with smart-pointer ownership,
-                STL-style iterators, comparator support, traversal helpers, and beginner-friendly documentation.
-            </p>
-            <div class="note">
-                This library is a normal Binary Search Tree. It does not rebalance itself, so sorted input can degrade operations to linear time.
+        <header class="site-header">
+            <div class="topbar">
+                <a class="brand" href="index.html">
+                    <small>Header-only C++17 Library</small>
+                    <strong>BinarySearchTree.h</strong>
+                </a>
+                <nav class="nav">
+                    <a href="docs/index.html">Overview</a>
+                    <a href="docs/getting-started.html">Getting Started</a>
+                    <a href="docs/api-reference.html">API Reference</a>
+                    <a href="docs/examples.html">Examples</a>
+                    <a href="docs/performance.html">Performance</a>
+                </nav>
             </div>
-            <div class="grid">
-                <a class="card" href="docs/getting-started.md">
-                    <h2>Getting Started</h2>
-                    <p>Installation, include path, first example, and build commands.</p>
-                </a>
-                <a class="card" href="docs/api-reference.md">
-                    <h2>API Reference</h2>
-                    <p>Detailed method-by-method reference in a classic documentation style.</p>
-                </a>
-                <a class="card" href="docs/examples.md">
-                    <h2>Examples</h2>
-                    <p>Buildable examples for iterators, traversal helpers, and custom objects.</p>
-                </a>
-                <a class="card" href="docs/performance.md">
-                    <h2>Performance</h2>
-                    <p>Complexity notes and guidance on unbalanced tree behavior.</p>
-                </a>
+            <div class="hero">
+                <p>
+                    A modern header-only C++17 Binary Search Tree library with smart-pointer memory management,
+                    STL-style iterators, traversal helpers, comparator support, and a documentation set that can
+                    be browsed from GitHub or GitHub Pages.
+                </p>
+                <div class="notice">
+                    This is a plain Binary Search Tree, not a self-balancing AVL or Red-Black tree.
+                    Sorted insertion order can degrade operations to <code>O(N)</code>.
+                </div>
             </div>
-        </section>
+        </header>
 
-        <section class="section">
-            <h2>Quick Example</h2>
+        <div class="cards">
+            <a class="card" href="docs/getting-started.html">
+                <div class="kicker">Installation</div>
+                <h2>Getting Started</h2>
+                <p>Set up the include path, compile the examples, and run the tests.</p>
+            </a>
+            <a class="card" href="docs/api-reference.html">
+                <div class="kicker">Reference</div>
+                <h2>API Reference</h2>
+                <p>Browse constructors, iterators, modifiers, traversal helpers, and utility methods.</p>
+            </a>
+            <a class="card" href="docs/examples.html">
+                <div class="kicker">Examples</div>
+                <h2>Usage Examples</h2>
+                <p>See concise, copyable examples for integers, custom comparators, and traversal patterns.</p>
+            </a>
+            <a class="card" href="docs/performance.html">
+                <div class="kicker">Complexity</div>
+                <h2>Performance Notes</h2>
+                <p>Understand how tree height changes the cost of search, insert, and erase.</p>
+            </a>
+        </div>
+
+        <section class="content-panel" style="margin-top:24px;">
+            <h1>Quick Example</h1>
             <pre><code>#include &lt;iostream&gt;
 #include &lt;bst/bst.h&gt;
 
@@ -200,23 +73,15 @@ int main() {
     }
     std::cout &lt;&lt; '\n';
 }</code></pre>
-        </section>
 
-        <section class="section">
-            <h2>Highlights</h2>
+            <h2>Public project highlights</h2>
             <ul>
-                <li>Header-only C++17 design</li>
-                <li>`std::unique_ptr` node ownership</li>
-                <li>Comparator-aware ordering with `BinarySearchTree&lt;T, Compare&gt;`</li>
-                <li>STL-style `insert`, `emplace`, `find`, `contains`, and iterators</li>
-                <li>`lower_bound`, `upper_bound`, `min`, `max`, `height`, `to_vector`</li>
-                <li>In-order, pre-order, and post-order traversal helpers</li>
+                <li>Header-only C++17 layout with the public header at <code>include/bst/bst.h</code></li>
+                <li>Comparator-aware <code>BinarySearchTree&lt;T, Compare&gt;</code></li>
+                <li>STL-style <code>insert</code>, <code>emplace</code>, <code>find</code>, <code>contains</code>, and iterator APIs</li>
+                <li>Utility helpers including <code>lower_bound</code>, <code>upper_bound</code>, <code>min</code>, <code>max</code>, <code>height</code>, and <code>to_vector</code></li>
             </ul>
         </section>
-
-        <p class="footer">
-            Source repository: <a href="https://github.com/Brxj19/Binary-Search-Tree">github.com/Brxj19/Binary-Search-Tree</a>
-        </p>
     </div>
 </body>
 </html>

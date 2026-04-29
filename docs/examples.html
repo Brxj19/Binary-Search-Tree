@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples | BinarySearchTree.h</title>
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+    <div class="page">
+        <header class="site-header">
+            <div class="topbar">
+                <a class="brand" href="../index.html">
+                    <small>Header-only C++17 Library</small>
+                    <strong>BinarySearchTree.h</strong>
+                </a>
+                <nav class="nav">
+                    <a href="index.html">Overview</a>
+                    <a href="getting-started.html">Getting Started</a>
+                    <a href="api-reference.html">API Reference</a>
+                    <a href="examples.html">Examples</a>
+                    <a href="performance.html">Performance</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <aside class="sidebar">
+                <h2>Examples</h2>
+                <a href="#basic">Basic Usage</a>
+                <a href="#custom">Custom Types</a>
+                <a href="#iterators">Iterators</a>
+                <a href="#traversal">Traversal</a>
+                <a href="#compile">Compile Commands</a>
+            </aside>
+
+            <main class="content-panel">
+                <h1>Usage Examples</h1>
+                <p>
+                    The repository includes buildable example programs in <code>examples/</code>. These snippets
+                    mirror those files and are intentionally small enough to paste into a test program.
+                </p>
+
+                <h2 id="basic">Basic Usage</h2>
+                <pre><code>BinarySearchTree&lt;int&gt; tree = {8, 3, 10, 1, 6, 14, 4, 7, 13};
+tree.insert(5);
+tree.erase(10);
+
+for (int value : tree) {
+    std::cout &lt;&lt; value &lt;&lt; ' ';
+}</code></pre>
+
+                <h2 id="custom">Custom Objects and Comparators</h2>
+                <pre><code>struct BookTitleLess {
+    bool operator()(const Book&amp; lhs, const Book&amp; rhs) const {
+        return lhs.title &lt; rhs.title;
+    }
+};
+
+BinarySearchTree&lt;Book, BookTitleLess&gt; library;
+library.emplace("Dune", 1965);
+library.emplace("Foundation", 1951);</code></pre>
+
+                <h2 id="iterators">Iterator Usage</h2>
+                <pre><code>auto lower = tree.lower_bound(23);
+auto upper = tree.upper_bound(25);
+auto next = tree.erase(tree.find(25));</code></pre>
+
+                <h2 id="traversal">Traversal Helpers</h2>
+                <pre><code>tree.in_order_traversal([](const int value) {
+    std::cout &lt;&lt; value &lt;&lt; ' ';
+});</code></pre>
+
+                <h2 id="compile">Suggested Compile Commands</h2>
+                <pre><code>g++ -std=c++17 -Wall -Wextra -Wpedantic examples/basic_usage.cpp -Iinclude -o basic_usage
+g++ -std=c++17 -Wall -Wextra -Wpedantic examples/custom_object.cpp -Iinclude -o custom_object
+g++ -std=c++17 -Wall -Wextra -Wpedantic examples/iterator_usage.cpp -Iinclude -o iterator_usage
+g++ -std=c++17 -Wall -Wextra -Wpedantic examples/traversal_usage.cpp -Iinclude -o traversal_usage</code></pre>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

@@ -11,6 +11,12 @@ This library is a plain Binary Search Tree. It is not self-balancing, so sorted 
 - [Examples](examples.md)
 - [Performance Notes](performance.md)
 
+## Published HTML site
+
+- [Documentation home](../index.html)
+- [Published overview page](index.html)
+- [Published API reference](api-reference.html)
+
 ## Highlights
 
 - Header-only and C++17 compatible
