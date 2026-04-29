@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference | BinarySearchTree.h</title>
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+    <div class="page">
+        <header class="site-header">
+            <div class="topbar">
+                <a class="brand" href="../index.html">
+                    <small>Header-only C++17 Library</small>
+                    <strong>BinarySearchTree.h</strong>
+                </a>
+                <nav class="nav">
+                    <a href="index.html">Overview</a>
+                    <a href="getting-started.html">Getting Started</a>
+                    <a href="api-reference.html">API Reference</a>
+                    <a href="examples.html">Examples</a>
+                    <a href="performance.html">Performance</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <aside class="toc">
+                <h2>Contents</h2>
+                <a href="#overview">Overview</a>
+                <a href="#constructors">Constructors and Assignment</a>
+                <a href="#capacity">Capacity</a>
+                <a href="#modifiers">Modifiers</a>
+                <a href="#lookup">Lookup and Bounds</a>
+                <a href="#iterators">Iterators</a>
+                <a href="#helpers">Extremes and Helpers</a>
+                <a href="#traversal">Traversal</a>
+            </aside>
+
+            <main class="content-panel">
+                <h1>API Reference</h1>
+                <p id="overview">
+                    The class template is declared as <code>template &lt;typename T, typename Compare = std::less&lt;T&gt;&gt; class BinarySearchTree;</code>.
+                    Values are unique, ordered by <code>Compare</code>, and exposed through bidirectional iterators.
+                </p>
+                <p>
+                    The Markdown reference in
+                    <a href="https://github.com/Brxj19/Binary-Search-Tree/blob/main/docs/api-reference.md">docs/api-reference.md</a>
+                    contains the full per-method write-up with prototypes, return values, notes, and cross-links.
+                    This HTML page is the published browsing view for GitHub Pages.
+                </p>
+
+                <h2 id="constructors">Constructors and Assignment</h2>
+                <div class="method-card">
+                    <h3><code>BinarySearchTree(const Compare& compare = Compare())</code></h3>
+                    <p>Constructs an empty tree using the supplied comparator.</p>
+                    <pre><code>BinarySearchTree&lt;int&gt; ascending;
+BinarySearchTree&lt;int, std::greater&lt;int&gt;&gt; descending;</code></pre>
+                    <p>Complexity: constant.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>BinarySearchTree(InputIt first, InputIt last, const Compare& compare = Compare())</code></h3>
+                    <p>Builds a tree by inserting a range of values. Duplicate values are ignored.</p>
+                    <pre><code>std::vector&lt;int&gt; values = {8, 3, 10, 1, 6};
+BinarySearchTree&lt;int&gt; tree(values.begin(), values.end());</code></pre>
+                    <p>Complexity: average <code>O(N log N)</code>, worst <code>O(N^2)</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>BinarySearchTree(std::initializer_list&lt;T&gt; init, const Compare& compare = Compare())</code></h3>
+                    <p>Builds a tree from a braced list of values.</p>
+                    <pre><code>BinarySearchTree&lt;int&gt; tree = {8, 3, 10, 1, 6};</code></pre>
+                    <p>Complexity: average <code>O(N log N)</code>, worst <code>O(N^2)</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>BinarySearchTree(const BinarySearchTree& other)</code> and <code>operator=(const BinarySearchTree& other)</code></h3>
+                    <p>Create or assign a deep copy of another tree.</p>
+                    <pre><code>BinarySearchTree&lt;int&gt; source = {8, 3, 10};
+BinarySearchTree&lt;int&gt; copy(source);
+BinarySearchTree&lt;int&gt; assigned;
+assigned = source;</code></pre>
+                    <p>Complexity: linear in the size of the copied tree.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>BinarySearchTree(BinarySearchTree&& other)</code> and <code>operator=(BinarySearchTree&& other)</code></h3>
+                    <p>Move node ownership from another tree and leave the source empty.</p>
+                    <pre><code>BinarySearchTree&lt;int&gt; source = {8, 3, 10};
+BinarySearchTree&lt;int&gt; moved(std::move(source));</code></pre>
+                    <p>Complexity: constant.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>swap(BinarySearchTree& other)</code></h3>
+                    <p>Exchange the contents and comparator state of two trees without copying values.</p>
+                    <pre><code>BinarySearchTree&lt;int&gt; a = {1, 2};
+BinarySearchTree&lt;int&gt; b = {8, 9};
+a.swap(b);</code></pre>
+                    <p>Complexity: constant.</p>
+                </div>
+
+                <h2 id="capacity">Capacity</h2>
+                <div class="method-card">
+                    <h3><code>size() const noexcept</code></h3>
+                    <p>Returns the current number of stored values.</p>
+                    <pre><code>BinarySearchTree&lt;int&gt; tree = {8, 3, 10};
+auto count = tree.size();</code></pre>
+                    <p>Complexity: constant.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>empty() const noexcept</code></h3>
+                    <p>Checks whether the tree contains any values.</p>
+                    <pre><code>BinarySearchTree&lt;int&gt; tree;
+bool is_empty = tree.empty();</code></pre>
+                    <p>Complexity: constant.</p>
+                </div>
+
+                <h2 id="modifiers">Modifiers</h2>
+                <div class="method-card">
+                    <h3><code>clear() noexcept</code></h3>
+                    <p>Removes all nodes from the tree.</p>
+                    <pre><code>BinarySearchTree&lt;int&gt; tree = {8, 3, 10};
+tree.clear();</code></pre>
+                    <p>Complexity: linear in <code>size()</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>insert(const T& value)</code> and <code>insert(T&& value)</code></h3>
+                    <p>Insert a unique value and return <code>{iterator, bool}</code> indicating whether insertion occurred.</p>
+                    <pre><code>auto [it, inserted] = tree.insert(8);</code></pre>
+                    <p>Complexity: average <code>O(log N)</code>, worst <code>O(N)</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>insert(InputIt first, InputIt last)</code></h3>
+                    <p>Insert an entire input range.</p>
+                    <pre><code>std::vector&lt;int&gt; values = {10, 1, 6};
+tree.insert(values.begin(), values.end());</code></pre>
+                    <p>Complexity: average <code>O(M log(N + M))</code>, worst <code>O(M(N + M))</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>emplace(Args&&... args)</code></h3>
+                    <p>Construct a value of type <code>T</code> from the forwarded arguments and insert it.</p>
+                    <pre><code>tree.emplace(7, "seven");</code></pre>
+                    <p>Complexity: average <code>O(log N)</code>, worst <code>O(N)</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>erase(const T& value)</code></h3>
+                    <p>Erase by key and return <code>1</code> on success or <code>0</code> if no matching value exists.</p>
+                    <pre><code>auto removed = tree.erase(3);</code></pre>
+                    <p>Complexity: average <code>O(log N)</code>, worst <code>O(N)</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>erase(const_iterator position)</code></h3>
+                    <p>Erase by iterator and return the next valid iterator.</p>
+                    <pre><code>auto it = tree.find(8);
+auto next = tree.erase(it);</code></pre>
+                    <p>Complexity: average <code>O(log N)</code>, worst <code>O(N)</code>.</p>
+                </div>
+
+                <h2 id="lookup">Lookup and Bounds</h2>
+                <div class="method-card">
+                    <h3><code>find(const T& value)</code> and <code>find(const T& value) const</code></h3>
+                    <p>Find an equivalent value and return an iterator or const iterator to it.</p>
+                    <pre><code>auto it = tree.find(6);
+if (it != tree.end()) {
+    std::cout &lt;&lt; *it;
+}</code></pre>
+                    <p>Complexity: average <code>O(log N)</code>, worst <code>O(N)</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>contains(const T& value) const</code></h3>
+                    <p>Convenience query that returns <code>true</code> when a matching value exists.</p>
+                    <pre><code>bool has_six = tree.contains(6);</code></pre>
+                    <p>Complexity: average <code>O(log N)</code>, worst <code>O(N)</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>lower_bound(const T& value)</code> and const overload</h3>
+                    <p>Return the first element that is not ordered before the lookup value.</p>
+                    <pre><code>auto it = tree.lower_bound(5);</code></pre>
+                    <p>Complexity: average <code>O(log N)</code>, worst <code>O(N)</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>upper_bound(const T& value)</code> and const overload</h3>
+                    <p>Return the first element ordered after the lookup value.</p>
+                    <pre><code>auto it = tree.upper_bound(6);</code></pre>
+                    <p>Complexity: average <code>O(log N)</code>, worst <code>O(N)</code>.</p>
+                </div>
+
+                <h2 id="iterators">Iterators</h2>
+                <div class="method-card">
+                    <h3><code>begin()</code>, <code>begin() const</code>, and <code>cbegin()</code></h3>
+                    <p>Return an iterator to the smallest element in comparator order.</p>
+                    <pre><code>for (auto it = tree.begin(); it != tree.end(); ++it) {
+    std::cout &lt;&lt; *it &lt;&lt; ' ';
+}</code></pre>
+                    <p>Complexity: average <code>O(log N)</code>, worst <code>O(N)</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>end()</code>, <code>end() const</code>, and <code>cend()</code></h3>
+                    <p>Return the past-the-end iterator. On non-empty trees, <code>--end()</code> yields the maximum element.</p>
+                    <pre><code>auto it = tree.end();
+if (!tree.empty()) {
+    --it;
+}</code></pre>
+                    <p>Complexity: constant.</p>
+                </div>
+
+                <h2 id="helpers">Extremes and Helpers</h2>
+                <div class="method-card">
+                    <h3><code>min()</code> and <code>min() const</code></h3>
+                    <p>Return the smallest value. Throws <code>std::out_of_range</code> when the tree is empty.</p>
+                    <pre><code>int smallest = tree.min();</code></pre>
+                    <p>Complexity: average <code>O(log N)</code>, worst <code>O(N)</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>max()</code> and <code>max() const</code></h3>
+                    <p>Return the largest value. Throws <code>std::out_of_range</code> when the tree is empty.</p>
+                    <pre><code>int largest = tree.max();</code></pre>
+                    <p>Complexity: average <code>O(log N)</code>, worst <code>O(N)</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>height() const noexcept</code></h3>
+                    <p>Return the number of nodes on the longest root-to-leaf path.</p>
+                    <pre><code>auto h = tree.height();</code></pre>
+                    <p>Complexity: linear in <code>size()</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>to_vector() const</code></h3>
+                    <p>Copy the tree contents into a vector using comparator order.</p>
+                    <pre><code>std::vector&lt;int&gt; values = tree.to_vector();</code></pre>
+                    <p>Complexity: linear in <code>size()</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>is_valid_bst() const</code></h3>
+                    <p>Diagnostic helper that verifies the internal ordering still satisfies the BST property.</p>
+                    <pre><code>bool valid = tree.is_valid_bst();</code></pre>
+                    <p>Complexity: linear in <code>size()</code>.</p>
+                </div>
+
+                <h2 id="traversal">Traversal</h2>
+                <div class="method-card">
+                    <h3><code>in_order_traversal(UnaryFunction&& function) const</code></h3>
+                    <p>Visit values in comparator order.</p>
+                    <pre><code>tree.in_order_traversal([](const int value) {
+    std::cout &lt;&lt; value &lt;&lt; ' ';
+});</code></pre>
+                    <p>Complexity: linear in <code>size()</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>pre_order_traversal(UnaryFunction&& function) const</code></h3>
+                    <p>Visit values in Root-Left-Right order.</p>
+                    <pre><code>tree.pre_order_traversal([](const int value) {
+    std::cout &lt;&lt; value &lt;&lt; ' ';
+});</code></pre>
+                    <p>Complexity: linear in <code>size()</code>.</p>
+                </div>
+                <div class="method-card">
+                    <h3><code>post_order_traversal(UnaryFunction&& function) const</code></h3>
+                    <p>Visit values in Left-Right-Root order.</p>
+                    <pre><code>tree.post_order_traversal([](const int value) {
+    std::cout &lt;&lt; value &lt;&lt; ' ';
+});</code></pre>
+                    <p>Complexity: linear in <code>size()</code>.</p>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started | BinarySearchTree.h</title>
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+    <div class="page">
+        <header class="site-header">
+            <div class="topbar">
+                <a class="brand" href="../index.html">
+                    <small>Header-only C++17 Library</small>
+                    <strong>BinarySearchTree.h</strong>
+                </a>
+                <nav class="nav">
+                    <a href="index.html">Overview</a>
+                    <a href="getting-started.html">Getting Started</a>
+                    <a href="api-reference.html">API Reference</a>
+                    <a href="examples.html">Examples</a>
+                    <a href="performance.html">Performance</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <aside class="sidebar">
+                <h2>On This Page</h2>
+                <a href="#requirements">Requirements</a>
+                <a href="#install">Installation</a>
+                <a href="#example">First Example</a>
+                <a href="#build">Build and Test</a>
+                <a href="#notes">Notes</a>
+            </aside>
+
+            <main class="content-panel">
+                <h1>Getting Started</h1>
+
+                <h2 id="requirements">Requirements</h2>
+                <ul>
+                    <li>A compiler with C++17 support</li>
+                    <li>No external dependencies</li>
+                </ul>
+
+                <h2 id="install">Installation</h2>
+                <p>
+                    Copy the repository's <code>include/</code> directory into your project and add it to the compiler include path.
+                </p>
+                <pre><code>#include &lt;bst/bst.h&gt;</code></pre>
+                <p style="margin-top:14px;">Example compile command:</p>
+                <pre><code>g++ -std=c++17 -Wall -Wextra -Wpedantic your_program.cpp -I/path/to/include -o your_program</code></pre>
+
+                <h3>Git submodule option</h3>
+                <pre><code>git submodule add https://github.com/Brxj19/Binary-Search-Tree.git external/Binary-Search-Tree</code></pre>
+
+                <h2 id="example">First Example</h2>
+                <pre><code>#include &lt;iostream&gt;
+#include &lt;bst/bst.h&gt;
+
+int main() {
+    BinarySearchTree&lt;int&gt; tree = {8, 3, 10, 1, 6};
+    tree.insert(14);
+    tree.erase(3);
+
+    for (int value : tree) {
+        std::cout &lt;&lt; value &lt;&lt; ' ';
+    }
+    std::cout &lt;&lt; '\n';
+}</code></pre>
+
+                <h2 id="build">Build and Test</h2>
+                <h3>CMake</h3>
+                <pre><code>mkdir build
+cd build
+cmake ..
+cmake --build .
+ctest --output-on-failure</code></pre>
+
+                <h3>Direct test build</h3>
+                <pre><code>g++ -std=c++17 -Wall -Wextra -Wpedantic tests/test_bst.cpp -Iinclude -o test_bst
+./test_bst</code></pre>
+
+                <h2 id="notes">Notes</h2>
+                <ul>
+                    <li>The tree stores unique values only.</li>
+                    <li>Ordering is controlled by the <code>Compare</code> template parameter.</li>
+                    <li>This is a normal Binary Search Tree, not an AVL tree or Red-Black tree.</li>
+                </ul>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

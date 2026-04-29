@@ -90,9 +90,16 @@ g++ -std=c++17 -Wall -Wextra -Wpedantic tests/test_bst.cpp -Iinclude -o test_bst
 
 ## Documentation
 
-GitHub Pages documentation: https://brxj19.github.io/Binary-Search-Tree/
+GitHub Pages documentation:
 
-Repository docs:
+- [Home](https://brxj19.github.io/Binary-Search-Tree/)
+- [Overview](https://brxj19.github.io/Binary-Search-Tree/docs/index.html)
+- [Getting Started](https://brxj19.github.io/Binary-Search-Tree/docs/getting-started.html)
+- [API Reference](https://brxj19.github.io/Binary-Search-Tree/docs/api-reference.html)
+- [Examples](https://brxj19.github.io/Binary-Search-Tree/docs/examples.html)
+- [Performance](https://brxj19.github.io/Binary-Search-Tree/docs/performance.html)
+
+Repository documentation sources:
 
 - [Overview](docs/index.md)
 - [Getting Started](docs/getting-started.md)

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BinarySearchTree.h Documentation</title>
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+    <div class="page">
+        <header class="site-header">
+            <div class="topbar">
+                <a class="brand" href="../index.html">
+                    <small>Header-only C++17 Library</small>
+                    <strong>BinarySearchTree.h</strong>
+                </a>
+                <nav class="nav">
+                    <a href="index.html">Overview</a>
+                    <a href="getting-started.html">Getting Started</a>
+                    <a href="api-reference.html">API Reference</a>
+                    <a href="examples.html">Examples</a>
+                    <a href="performance.html">Performance</a>
+                </nav>
+            </div>
+            <div class="hero">
+                <p>
+                    `BinarySearchTree` is a small, reusable C++17 container for unique values stored in
+                    comparator order. The public API is intentionally beginner-friendly, but it still
+                    follows familiar STL-style patterns for insertion, lookup, erasure, and iteration.
+                </p>
+                <div class="notice">
+                    This library is a normal Binary Search Tree. It does not rebalance itself, so sorted input can degrade search, insertion, and erase to linear time.
+                </div>
+            </div>
+        </header>
+
+        <div class="cards">
+            <a class="card" href="getting-started.html">
+                <div class="kicker">Start Here</div>
+                <h2>Getting Started</h2>
+                <p>Install the header, include it correctly, and build the tests and examples.</p>
+            </a>
+            <a class="card" href="api-reference.html">
+                <div class="kicker">Reference</div>
+                <h2>API Reference</h2>
+                <p>Browse constructors, modifiers, iterators, traversal helpers, and utility methods.</p>
+            </a>
+            <a class="card" href="examples.html">
+                <div class="kicker">Examples</div>
+                <h2>Usage Examples</h2>
+                <p>See compact examples for custom comparators, iterators, and traversal methods.</p>
+            </a>
+            <a class="card" href="performance.html">
+                <div class="kicker">Complexity</div>
+                <h2>Performance Notes</h2>
+                <p>Understand how tree height affects lookup, insertion, and erase behavior.</p>
+            </a>
+        </div>
+
+        <section class="content-panel" style="margin-top:24px;">
+            <h1>Library Overview</h1>
+            <p>
+                The implementation lives in <code>include/bst/bst.h</code>. Node ownership is managed with
+                <code>std::unique_ptr</code>, values are unique, and iteration follows in-order traversal.
+                Custom ordering is supported through the <code>Compare</code> template parameter.
+            </p>
+            <h2>Highlights</h2>
+            <ul>
+                <li>Header-only and C++17-compatible</li>
+                <li>Comparator-aware ordering with <code>BinarySearchTree&lt;T, Compare&gt;</code></li>
+                <li><code>insert</code>, <code>emplace</code>, <code>erase</code>, <code>find</code>, <code>contains</code>, and <code>clear</code></li>
+                <li>Mutable and const bidirectional iterators</li>
+                <li><code>lower_bound</code>, <code>upper_bound</code>, <code>min</code>, <code>max</code>, <code>height</code>, and <code>to_vector</code></li>
+                <li>Traversal helpers for in-order, pre-order, and post-order visits</li>
+            </ul>
+            <h2>Source links</h2>
+            <ul>
+                <li><a href="https://github.com/Brxj19/Binary-Search-Tree/blob/main/README.md">README on GitHub</a></li>
+                <li><a href="https://github.com/Brxj19/Binary-Search-Tree/blob/main/docs/index.md">Markdown overview</a></li>
+                <li><a href="https://github.com/Brxj19/Binary-Search-Tree/blob/main/docs/api-reference.md">Markdown API reference</a></li>
+            </ul>
+        </section>
+
+        <p class="footer">
+            Source repository: <a href="https://github.com/Brxj19/Binary-Search-Tree">github.com/Brxj19/Binary-Search-Tree</a>
+        </p>
+    </div>
+</body>
+</html>
