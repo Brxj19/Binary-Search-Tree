@@ -3,87 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BinarySearchTree.h Documentation</title>
+    <title>Overview | BinarySearchTree.h</title>
     <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
-    <div class="page">
-        <header class="site-header">
-            <div class="topbar">
-                <a class="brand" href="../index.html">
-                    <small>Header-only C++17 Library</small>
-                    <strong>BinarySearchTree.h</strong>
-                </a>
-                <nav class="nav">
-                    <a href="index.html">Overview</a>
-                    <a href="getting-started.html">Getting Started</a>
-                    <a href="api-reference.html">API Reference</a>
-                    <a href="examples.html">Examples</a>
-                    <a href="performance.html">Performance</a>
-                </nav>
-            </div>
-            <div class="hero">
-                <p>
-                    `BinarySearchTree` is a small, reusable C++17 container for unique values stored in
-                    comparator order. The public API is intentionally beginner-friendly, but it still
-                    follows familiar STL-style patterns for insertion, lookup, erasure, and iteration.
-                </p>
-                <div class="notice">
-                    This library is a normal Binary Search Tree. It does not rebalance itself, so sorted input can degrade search, insertion, and erase to linear time.
-                </div>
-            </div>
-        </header>
+<body class="doc-page" data-page="overview">
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
-        <div class="cards">
-            <a class="card" href="getting-started.html">
-                <div class="kicker">Start Here</div>
-                <h2>Getting Started</h2>
-                <p>Install the header, include it correctly, and build the tests and examples.</p>
+    <header class="site-navbar">
+        <div class="site-navbar-inner">
+            <a class="brand" href="../index.html" aria-label="BinarySearchTree.h home">
+                <span class="brand-title">BinarySearchTree.h</span>
+                <span class="brand-subtitle">Header-only C++17 library</span>
             </a>
-            <a class="card" href="api-reference.html">
-                <div class="kicker">Reference</div>
-                <h2>API Reference</h2>
-                <p>Browse constructors, modifiers, iterators, traversal helpers, and utility methods.</p>
-            </a>
-            <a class="card" href="examples.html">
-                <div class="kicker">Examples</div>
-                <h2>Usage Examples</h2>
-                <p>See compact examples for custom comparators, iterators, and traversal methods.</p>
-            </a>
-            <a class="card" href="performance.html">
-                <div class="kicker">Complexity</div>
-                <h2>Performance Notes</h2>
-                <p>Understand how tree height affects lookup, insertion, and erase behavior.</p>
-            </a>
+            <div class="navbar-spacer"></div>
+            <nav class="navbar-links" aria-label="Primary navigation">
+                <a class="navbar-link" data-page-link="overview" href="index.html">Overview</a>
+                <a class="navbar-link" data-page-link="getting-started" href="getting-started.html">Getting Started</a>
+                <a class="navbar-link" data-page-link="api-reference" href="api-reference.html">API Reference</a>
+                <a class="navbar-link" data-page-link="examples" href="examples.html">Examples</a>
+                <a class="navbar-link" data-page-link="performance" href="performance.html">Performance</a>
+                <a class="navbar-link github-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a>
+            </nav>
+            <button class="icon-button desktop-only" type="button" data-theme-toggle aria-label="Toggle theme" aria-pressed="false">Dark</button>
+            <button class="icon-button mobile-only" type="button" data-mobile-nav-toggle aria-label="Toggle navigation menu" aria-expanded="false">Menu</button>
+        </div>
+    </header>
+
+    <div class="shell">
+        <div class="mobile-sidebar" data-mobile-nav>
+            <div class="mobile-sidebar-inner">
+                <p class="mobile-sidebar-title">Documentation</p>
+                <a class="mobile-nav-link" data-page-link="overview" href="index.html">Overview</a>
+                <a class="mobile-nav-link" data-page-link="getting-started" href="getting-started.html">Getting Started</a>
+                <a class="mobile-nav-link" data-page-link="api-reference" href="api-reference.html">API Reference</a>
+                <a class="mobile-nav-link" data-page-link="examples" href="examples.html">Examples</a>
+                <a class="mobile-nav-link" data-page-link="performance" href="performance.html">Performance</a>
+                <a class="mobile-nav-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a>
+                <button class="icon-button" type="button" data-theme-toggle aria-label="Toggle theme" aria-pressed="false">Dark</button>
+            </div>
         </div>
 
-        <section class="content-panel" style="margin-top:24px;">
-            <h1>Library Overview</h1>
-            <p>
-                The implementation lives in <code>include/bst/bst.h</code>. Node ownership is managed with
-                <code>std::unique_ptr</code>, values are unique, and iteration follows in-order traversal.
-                Custom ordering is supported through the <code>Compare</code> template parameter.
-            </p>
-            <h2>Highlights</h2>
-            <ul>
-                <li>Header-only and C++17-compatible</li>
-                <li>Comparator-aware ordering with <code>BinarySearchTree&lt;T, Compare&gt;</code></li>
-                <li><code>insert</code>, <code>emplace</code>, <code>erase</code>, <code>find</code>, <code>contains</code>, and <code>clear</code></li>
-                <li>Mutable and const bidirectional iterators</li>
-                <li><code>lower_bound</code>, <code>upper_bound</code>, <code>min</code>, <code>max</code>, <code>height</code>, and <code>to_vector</code></li>
-                <li>Traversal helpers for in-order, pre-order, and post-order visits</li>
-            </ul>
-            <h2>Source links</h2>
-            <ul>
-                <li><a href="https://github.com/Brxj19/Binary-Search-Tree/blob/main/README.md">README on GitHub</a></li>
-                <li><a href="https://github.com/Brxj19/Binary-Search-Tree/blob/main/docs/index.md">Markdown overview</a></li>
-                <li><a href="https://github.com/Brxj19/Binary-Search-Tree/blob/main/docs/api-reference.md">Markdown API reference</a></li>
-            </ul>
-        </section>
+        <main id="main-content" class="page-main">
+            <div class="layout-grid">
+                <aside class="sidebar" aria-label="Documentation sidebar">
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">Introduction</p>
+                        <a class="sidebar-link" data-page-link="overview" href="index.html">Overview</a>
+                        <a class="sidebar-link" data-page-link="getting-started" href="getting-started.html">Getting Started</a>
+                    </div>
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">API Reference</p>
+                        <div class="sidebar-sub-links">
+                            <a class="sidebar-sub-link" href="api-reference.html#class-template">BinarySearchTree</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#constructors">Constructors</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#assignment">Assignment</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#capacity">Capacity</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#modifiers">Modifiers</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#lookup">Lookup</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#iterators">Iterators</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#traversal">Traversal</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#utilities">Utilities</a>
+                        </div>
+                    </div>
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">Guides</p>
+                        <a class="sidebar-link" data-page-link="examples" href="examples.html">Examples</a>
+                        <a class="sidebar-link" data-page-link="performance" href="performance.html">Performance</a>
+                        <a class="sidebar-link" href="performance.html#when-not-to-use">Limitations</a>
+                    </div>
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">Project</p>
+                        <a class="sidebar-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a>
+                        <a class="sidebar-link" href="../LICENSE">License</a>
+                    </div>
+                </aside>
 
-        <p class="footer">
-            Source repository: <a href="https://github.com/Brxj19/Binary-Search-Tree">github.com/Brxj19/Binary-Search-Tree</a>
-        </p>
+                <section class="page-panel">
+                    <header class="page-header">
+                        <div class="eyebrow">Overview</div>
+                        <h1 class="page-title">Documentation Overview</h1>
+                        <p class="page-summary">
+                            This site introduces the BinarySearchTree.h library, shows how to get it into a project,
+                            and provides a browsable API reference for developers who want a simple, readable Binary Search Tree.
+                        </p>
+                    </header>
+
+                    <div class="section-block" id="overview-summary">
+                        <h2 class="section-heading">What this library is</h2>
+                        <p>
+                            <code>BinarySearchTree</code> is a header-only C++17 container for unique values stored in comparator order.
+                            It uses <code>std::unique_ptr</code> for node ownership, exposes bidirectional iterators, and intentionally keeps
+                            the implementation approachable for learning and small projects.
+                        </p>
+                    </div>
+
+                    <div class="section-block" id="overview-highlights">
+                        <h2 class="section-heading">Highlights</h2>
+                        <div class="summary-grid">
+                            <article class="summary-card">
+                                <h3>Header-only distribution</h3>
+                                <p>Add <code>include/</code> to the compiler include path and start using the tree without a library build step.</p>
+                            </article>
+                            <article class="summary-card">
+                                <h3>Comparator-aware ordering</h3>
+                                <p>Use <code>BinarySearchTree&lt;T, Compare&gt;</code> to define sort order without rewriting the container.</p>
+                            </article>
+                            <article class="summary-card">
+                                <h3>STL-style operations</h3>
+                                <p>Insertion, lookup, erase, bounds, iterators, and traversal helpers follow familiar naming and behavior.</p>
+                            </article>
+                            <article class="summary-card">
+                                <h3>Built for readable docs</h3>
+                                <p>The API reference and guides are structured for scanning code, checking complexity, and finding examples quickly.</p>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="section-block" id="overview-navigation">
+                        <h2 class="section-heading">Documentation map</h2>
+                        <div class="features-grid">
+                            <article class="feature-card">
+                                <h3>Getting Started</h3>
+                                <p>Installation, include path, first example, and local build commands.</p>
+                            </article>
+                            <article class="feature-card">
+                                <h3>API Reference</h3>
+                                <p>Constructors, modifiers, lookup helpers, iterators, traversal methods, and utilities.</p>
+                            </article>
+                            <article class="feature-card">
+                                <h3>Examples</h3>
+                                <p>Basic usage, custom comparators, custom objects, iterator patterns, and traversal snippets.</p>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="section-block" id="overview-warning">
+                        <article class="note-card">
+                            <h2>Important note</h2>
+                            <p>
+                                This is a plain Binary Search Tree, not a self-balancing AVL or Red-Black tree.
+                                Sorted or nearly sorted insertion orders can produce a tall tree and degrade average behavior to worst-case <code>O(N)</code>.
+                            </p>
+                        </article>
+                    </div>
+
+                    <nav class="prev-next" aria-label="Page navigation">
+                        <a class="prev-next-card" href="getting-started.html">
+                            <span class="prev-next-label">Next</span>
+                            <span class="prev-next-title">Getting Started</span>
+                        </a>
+                    </nav>
+                </section>
+
+                <aside class="page-toc" aria-label="On this page">
+                    <p class="page-toc-title">On this page</p>
+                    <ol class="toc-list">
+                        <li><a class="toc-link" href="#overview-summary">What this library is</a></li>
+                        <li><a class="toc-link" href="#overview-highlights">Highlights</a></li>
+                        <li><a class="toc-link" href="#overview-navigation">Documentation map</a></li>
+                        <li><a class="toc-link" href="#overview-warning">Important note</a></li>
+                    </ol>
+                </aside>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="site-footer-card">
+                <div>
+                    <p class="footer-title">BinarySearchTree.h</p>
+                    <p class="footer-text">Header-only C++17 Binary Search Tree library.</p>
+                    <p class="footer-note">Built for learning and lightweight C++ projects.</p>
+                </div>
+                <div>
+                    <p class="footer-title">Documentation</p>
+                    <ul class="footer-list">
+                        <li><a class="footer-link" href="index.html">Overview</a></li>
+                        <li><a class="footer-link" href="getting-started.html">Getting Started</a></li>
+                        <li><a class="footer-link" href="api-reference.html">API Reference</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="footer-title">Project</p>
+                    <ul class="footer-list">
+                        <li><a class="footer-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a></li>
+                        <li><a class="footer-link" href="../LICENSE">License</a></li>
+                        <li><a class="footer-link" href="performance.html">Performance</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
     </div>
+
+    <script src="assets/site.js"></script>
 </body>
 </html>

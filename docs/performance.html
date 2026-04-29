@@ -6,67 +6,233 @@
     <title>Performance | BinarySearchTree.h</title>
     <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
-    <div class="page">
-        <header class="site-header">
-            <div class="topbar">
-                <a class="brand" href="../index.html">
-                    <small>Header-only C++17 Library</small>
-                    <strong>BinarySearchTree.h</strong>
-                </a>
-                <nav class="nav">
-                    <a href="index.html">Overview</a>
-                    <a href="getting-started.html">Getting Started</a>
-                    <a href="api-reference.html">API Reference</a>
-                    <a href="examples.html">Examples</a>
-                    <a href="performance.html">Performance</a>
-                </nav>
+<body class="doc-page" data-page="performance">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-navbar">
+        <div class="site-navbar-inner">
+            <a class="brand" href="../index.html" aria-label="BinarySearchTree.h home">
+                <span class="brand-title">BinarySearchTree.h</span>
+                <span class="brand-subtitle">Header-only C++17 library</span>
+            </a>
+            <div class="navbar-spacer"></div>
+            <nav class="navbar-links" aria-label="Primary navigation">
+                <a class="navbar-link" data-page-link="overview" href="index.html">Overview</a>
+                <a class="navbar-link" data-page-link="getting-started" href="getting-started.html">Getting Started</a>
+                <a class="navbar-link" data-page-link="api-reference" href="api-reference.html">API Reference</a>
+                <a class="navbar-link" data-page-link="examples" href="examples.html">Examples</a>
+                <a class="navbar-link" data-page-link="performance" href="performance.html">Performance</a>
+                <a class="navbar-link github-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a>
+            </nav>
+            <button class="icon-button desktop-only" type="button" data-theme-toggle aria-label="Toggle theme" aria-pressed="false">Dark</button>
+            <button class="icon-button mobile-only" type="button" data-mobile-nav-toggle aria-label="Toggle navigation menu" aria-expanded="false">Menu</button>
+        </div>
+    </header>
+
+    <div class="shell">
+        <div class="mobile-sidebar" data-mobile-nav>
+            <div class="mobile-sidebar-inner">
+                <p class="mobile-sidebar-title">Documentation</p>
+                <a class="mobile-nav-link" data-page-link="overview" href="index.html">Overview</a>
+                <a class="mobile-nav-link" data-page-link="getting-started" href="getting-started.html">Getting Started</a>
+                <a class="mobile-nav-link" data-page-link="api-reference" href="api-reference.html">API Reference</a>
+                <a class="mobile-nav-link" data-page-link="examples" href="examples.html">Examples</a>
+                <a class="mobile-nav-link" data-page-link="performance" href="performance.html">Performance</a>
+                <a class="mobile-nav-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a>
+                <button class="icon-button" type="button" data-theme-toggle aria-label="Toggle theme" aria-pressed="false">Dark</button>
             </div>
-        </header>
+        </div>
 
-        <div class="main-grid">
-            <aside class="sidebar">
-                <h2>Performance</h2>
-                <a href="#table">Complexity Table</a>
-                <a href="#shape">Tree Shape</a>
-                <a href="#guidance">Practical Guidance</a>
-            </aside>
+        <main id="main-content" class="page-main">
+            <div class="layout-grid">
+                <aside class="sidebar" aria-label="Documentation sidebar">
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">Introduction</p>
+                        <a class="sidebar-link" data-page-link="overview" href="index.html">Overview</a>
+                        <a class="sidebar-link" data-page-link="getting-started" href="getting-started.html">Getting Started</a>
+                    </div>
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">API Reference</p>
+                        <div class="sidebar-sub-links">
+                            <a class="sidebar-sub-link" href="api-reference.html#class-template">BinarySearchTree</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#constructors">Constructors</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#assignment">Assignment</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#capacity">Capacity</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#modifiers">Modifiers</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#lookup">Lookup</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#iterators">Iterators</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#traversal">Traversal</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#utilities">Utilities</a>
+                        </div>
+                    </div>
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">Guides</p>
+                        <a class="sidebar-link" data-page-link="examples" href="examples.html">Examples</a>
+                        <a class="sidebar-link" data-page-link="performance" href="performance.html">Performance</a>
+                        <a class="sidebar-link" href="#when-not-to-use">Limitations</a>
+                    </div>
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">Project</p>
+                        <a class="sidebar-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a>
+                        <a class="sidebar-link" href="../LICENSE">License</a>
+                    </div>
+                </aside>
 
-            <main class="content-panel">
-                <h1>Performance Notes</h1>
-                <p>
-                    `BinarySearchTree` is a plain Binary Search Tree, so the cost of most operations depends on
-                    tree height. When the tree is shallow, lookups and insertions are fast. When the tree becomes
-                    tall and skewed, those same operations degrade toward linear time.
-                </p>
+                <section class="page-panel">
+                    <header class="page-header">
+                        <div class="eyebrow">Performance</div>
+                        <h1 class="page-title">How tree shape affects cost</h1>
+                        <p class="page-summary">
+                            Because this library is a normal Binary Search Tree and not a self-balancing tree, performance depends heavily on insertion order and resulting tree height.
+                        </p>
+                    </header>
 
-                <h2 id="table">Complexity Table</h2>
-                <pre><code>Operation                 Average      Worst
-Search                    O(log N)     O(N)
-Insert                    O(log N)     O(N)
-Erase                     O(log N)     O(N)
-lower_bound / upper_bound O(log N)     O(N)
-Traversal                 O(N)         O(N)
-size / empty              O(1)         O(1)</code></pre>
+                    <div class="section-block" id="complexity-table">
+                        <h2 class="section-heading">Complexity table</h2>
+                        <div class="table-card">
+                            <div class="table-scroll">
+                                <table class="doc-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Operation</th>
+                                            <th>Average</th>
+                                            <th>Worst</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Search</td>
+                                            <td><code>O(log N)</code></td>
+                                            <td><code>O(N)</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Insert</td>
+                                            <td><code>O(log N)</code></td>
+                                            <td><code>O(N)</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Erase</td>
+                                            <td><code>O(log N)</code></td>
+                                            <td><code>O(N)</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>lower_bound</code> / <code>upper_bound</code></td>
+                                            <td><code>O(log N)</code></td>
+                                            <td><code>O(N)</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Traversal</td>
+                                            <td><code>O(N)</code></td>
+                                            <td><code>O(N)</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>size</code> / <code>empty</code></td>
+                                            <td><code>O(1)</code></td>
+                                            <td><code>O(1)</code></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
-                <h2 id="shape">Why Tree Shape Matters</h2>
-                <p>If values are inserted in sorted order, the tree can become chain-like:</p>
-                <pre><code>1
+                    <div class="section-block" id="balanced-vs-unbalanced">
+                        <h2 class="section-heading">Balanced vs. unbalanced shape</h2>
+                        <p>
+                            When the tree remains relatively balanced, lookups tend to follow short paths from the root to the requested node.
+                            When values are inserted in sorted order, the structure can become skewed and behave more like a linked list.
+                        </p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-language">Text</span>
+                                <button class="copy-button" type="button" aria-label="Copy code block">Copy</button>
+                            </div>
+                            <pre><code>1
  \
   2
    \
     3
      \
       4</code></pre>
+                        </div>
+                    </div>
 
-                <h2 id="guidance">Practical Guidance</h2>
-                <ul>
-                    <li>Use this library when you want a straightforward educational or lightweight BST.</li>
-                    <li>Use <code>height()</code> to observe whether insertion order is creating a tall tree.</li>
-                    <li>If guaranteed logarithmic complexity is required, prefer a self-balancing tree or a standard container such as <code>std::set</code>.</li>
-                </ul>
-            </main>
-        </div>
+                    <div class="section-block" id="sorted-input-warning">
+                        <article class="note-card">
+                            <h2>Sorted input warning</h2>
+                            <p>
+                                Inserting already sorted values is the fastest way to create the worst-case shape.
+                                If that pattern is common in your workload, this container may not be the right fit.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="section-block" id="when-to-use">
+                        <h2 class="section-heading">When to use this library</h2>
+                        <ul class="list-tight">
+                            <li>When you want a lightweight educational BST implementation.</li>
+                            <li>When you need a simple header-only dependency for experiments or teaching.</li>
+                            <li>When readable implementation code matters as much as the container surface.</li>
+                        </ul>
+                    </div>
+
+                    <div class="section-block" id="when-not-to-use">
+                        <h2 class="section-heading">When not to use this library</h2>
+                        <ul class="list-tight">
+                            <li>When you need guaranteed logarithmic operations under arbitrary insertion order.</li>
+                            <li>When your workload naturally arrives pre-sorted or nearly sorted.</li>
+                            <li>When a standard associative container such as <code>std::set</code> better matches your requirements.</li>
+                        </ul>
+                    </div>
+
+                    <nav class="prev-next" aria-label="Page navigation">
+                        <a class="prev-next-card" href="examples.html">
+                            <span class="prev-next-label">Previous</span>
+                            <span class="prev-next-title">Examples</span>
+                        </a>
+                    </nav>
+                </section>
+
+                <aside class="page-toc" aria-label="On this page">
+                    <p class="page-toc-title">On this page</p>
+                    <ol class="toc-list">
+                        <li><a class="toc-link" href="#complexity-table">Complexity table</a></li>
+                        <li><a class="toc-link" href="#balanced-vs-unbalanced">Balanced vs. unbalanced</a></li>
+                        <li><a class="toc-link" href="#sorted-input-warning">Sorted input warning</a></li>
+                        <li><a class="toc-link" href="#when-to-use">When to use this library</a></li>
+                        <li><a class="toc-link" href="#when-not-to-use">When not to use this library</a></li>
+                    </ol>
+                </aside>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="site-footer-card">
+                <div>
+                    <p class="footer-title">BinarySearchTree.h</p>
+                    <p class="footer-text">Header-only C++17 Binary Search Tree library.</p>
+                    <p class="footer-note">Built for learning and lightweight C++ projects.</p>
+                </div>
+                <div>
+                    <p class="footer-title">Documentation</p>
+                    <ul class="footer-list">
+                        <li><a class="footer-link" href="index.html">Overview</a></li>
+                        <li><a class="footer-link" href="getting-started.html">Getting Started</a></li>
+                        <li><a class="footer-link" href="api-reference.html">API Reference</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="footer-title">Project</p>
+                    <ul class="footer-list">
+                        <li><a class="footer-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a></li>
+                        <li><a class="footer-link" href="../LICENSE">License</a></li>
+                        <li><a class="footer-link" href="examples.html">Examples</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
     </div>
+
+    <script src="assets/site.js"></script>
 </body>
 </html>
