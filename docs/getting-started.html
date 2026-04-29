@@ -6,60 +6,131 @@
     <title>Getting Started | BinarySearchTree.h</title>
     <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
-    <div class="page">
-        <header class="site-header">
-            <div class="topbar">
-                <a class="brand" href="../index.html">
-                    <small>Header-only C++17 Library</small>
-                    <strong>BinarySearchTree.h</strong>
-                </a>
-                <nav class="nav">
-                    <a href="index.html">Overview</a>
-                    <a href="getting-started.html">Getting Started</a>
-                    <a href="api-reference.html">API Reference</a>
-                    <a href="examples.html">Examples</a>
-                    <a href="performance.html">Performance</a>
-                </nav>
+<body class="doc-page" data-page="getting-started">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-navbar">
+        <div class="site-navbar-inner">
+            <a class="brand" href="../index.html" aria-label="BinarySearchTree.h home">
+                <span class="brand-title">BinarySearchTree.h</span>
+                <span class="brand-subtitle">Header-only C++17 library</span>
+            </a>
+            <div class="navbar-spacer"></div>
+            <nav class="navbar-links" aria-label="Primary navigation">
+                <a class="navbar-link" data-page-link="overview" href="index.html">Overview</a>
+                <a class="navbar-link" data-page-link="getting-started" href="getting-started.html">Getting Started</a>
+                <a class="navbar-link" data-page-link="api-reference" href="api-reference.html">API Reference</a>
+                <a class="navbar-link" data-page-link="examples" href="examples.html">Examples</a>
+                <a class="navbar-link" data-page-link="performance" href="performance.html">Performance</a>
+                <a class="navbar-link github-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a>
+            </nav>
+            <button class="icon-button desktop-only" type="button" data-theme-toggle aria-label="Toggle theme" aria-pressed="false">Dark</button>
+            <button class="icon-button mobile-only" type="button" data-mobile-nav-toggle aria-label="Toggle navigation menu" aria-expanded="false">Menu</button>
+        </div>
+    </header>
+
+    <div class="shell">
+        <div class="mobile-sidebar" data-mobile-nav>
+            <div class="mobile-sidebar-inner">
+                <p class="mobile-sidebar-title">Documentation</p>
+                <a class="mobile-nav-link" data-page-link="overview" href="index.html">Overview</a>
+                <a class="mobile-nav-link" data-page-link="getting-started" href="getting-started.html">Getting Started</a>
+                <a class="mobile-nav-link" data-page-link="api-reference" href="api-reference.html">API Reference</a>
+                <a class="mobile-nav-link" data-page-link="examples" href="examples.html">Examples</a>
+                <a class="mobile-nav-link" data-page-link="performance" href="performance.html">Performance</a>
+                <a class="mobile-nav-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a>
+                <button class="icon-button" type="button" data-theme-toggle aria-label="Toggle theme" aria-pressed="false">Dark</button>
             </div>
-        </header>
+        </div>
 
-        <div class="main-grid">
-            <aside class="sidebar">
-                <h2>On This Page</h2>
-                <a href="#requirements">Requirements</a>
-                <a href="#install">Installation</a>
-                <a href="#example">First Example</a>
-                <a href="#build">Build and Test</a>
-                <a href="#notes">Notes</a>
-            </aside>
+        <main id="main-content" class="page-main">
+            <div class="layout-grid">
+                <aside class="sidebar" aria-label="Documentation sidebar">
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">Introduction</p>
+                        <a class="sidebar-link" data-page-link="overview" href="index.html">Overview</a>
+                        <a class="sidebar-link" data-page-link="getting-started" href="getting-started.html">Getting Started</a>
+                    </div>
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">API Reference</p>
+                        <div class="sidebar-sub-links">
+                            <a class="sidebar-sub-link" href="api-reference.html#class-template">BinarySearchTree</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#constructors">Constructors</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#assignment">Assignment</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#capacity">Capacity</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#modifiers">Modifiers</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#lookup">Lookup</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#iterators">Iterators</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#traversal">Traversal</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#utilities">Utilities</a>
+                        </div>
+                    </div>
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">Guides</p>
+                        <a class="sidebar-link" data-page-link="examples" href="examples.html">Examples</a>
+                        <a class="sidebar-link" data-page-link="performance" href="performance.html">Performance</a>
+                        <a class="sidebar-link" href="performance.html#when-not-to-use">Limitations</a>
+                    </div>
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">Project</p>
+                        <a class="sidebar-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a>
+                        <a class="sidebar-link" href="../LICENSE">License</a>
+                    </div>
+                </aside>
 
-            <main class="content-panel">
-                <h1>Getting Started</h1>
+                <section class="page-panel">
+                    <header class="page-header">
+                        <div class="eyebrow">Getting Started</div>
+                        <h1 class="page-title">Add the library and run your first tree</h1>
+                        <p class="page-summary">
+                            This page covers installation, the public include path, a first working example, direct compiler usage,
+                            and the CMake-based build flow used by the repository itself.
+                        </p>
+                    </header>
 
-                <h2 id="requirements">Requirements</h2>
-                <ul>
-                    <li>A compiler with C++17 support</li>
-                    <li>No external dependencies</li>
-                </ul>
+                    <div class="section-block" id="requirements">
+                        <h2 class="section-heading">Requirements</h2>
+                        <ul class="list-tight">
+                            <li>A compiler with C++17 support</li>
+                            <li>No external dependencies</li>
+                            <li>Access to the repository's <code>include/</code> directory</li>
+                        </ul>
+                    </div>
 
-                <h2 id="install">Installation</h2>
-                <p>
-                    Copy the repository's <code>include/</code> directory into your project and add it to the compiler include path.
-                </p>
-                <pre><code>#include &lt;bst/bst.h&gt;</code></pre>
-                <p style="margin-top:14px;">Example compile command:</p>
-                <pre><code>g++ -std=c++17 -Wall -Wextra -Wpedantic your_program.cpp -I/path/to/include -o your_program</code></pre>
+                    <div class="section-block" id="installation">
+                        <h2 class="section-heading">Installation</h2>
+                        <p>Copy the repository's <code>include/</code> directory into your project and point the compiler include path at it.</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-language">Include</span>
+                                <button class="copy-button" type="button" aria-label="Copy code block">Copy</button>
+                            </div>
+                            <pre><code>#include &lt;bst/bst.h&gt;</code></pre>
+                        </div>
+                        <p>You can also keep the repository as a submodule if you want to track updates directly.</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-language">Bash</span>
+                                <button class="copy-button" type="button" aria-label="Copy code block">Copy</button>
+                            </div>
+                            <pre><code>git submodule add https://github.com/Brxj19/Binary-Search-Tree.git external/Binary-Search-Tree</code></pre>
+                        </div>
+                    </div>
 
-                <h3>Git submodule option</h3>
-                <pre><code>git submodule add https://github.com/Brxj19/Binary-Search-Tree.git external/Binary-Search-Tree</code></pre>
-
-                <h2 id="example">First Example</h2>
-                <pre><code>#include &lt;iostream&gt;
+                    <div class="section-block" id="quick-example">
+                        <h2 class="section-heading">Quick example</h2>
+                        <p>This example inserts values, erases one value, and iterates in sorted order.</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-language">C++</span>
+                                <button class="copy-button" type="button" aria-label="Copy code block">Copy</button>
+                            </div>
+                            <pre><code>#include &lt;iostream&gt;
 #include &lt;bst/bst.h&gt;
 
 int main() {
     BinarySearchTree&lt;int&gt; tree = {8, 3, 10, 1, 6};
+
     tree.insert(14);
     tree.erase(3);
 
@@ -68,27 +139,99 @@ int main() {
     }
     std::cout &lt;&lt; '\n';
 }</code></pre>
+                        </div>
+                    </div>
 
-                <h2 id="build">Build and Test</h2>
-                <h3>CMake</h3>
-                <pre><code>mkdir build
+                    <div class="section-block" id="compile">
+                        <h2 class="section-heading">Direct compiler build</h2>
+                        <p>Use this when you want the quickest possible test outside CMake.</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-language">Bash</span>
+                                <button class="copy-button" type="button" aria-label="Copy code block">Copy</button>
+                            </div>
+                            <pre><code>g++ -std=c++17 -Wall -Wextra -Wpedantic your_program.cpp -I/path/to/include -o your_program</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="section-block" id="cmake-build">
+                        <h2 class="section-heading">CMake build</h2>
+                        <p>The repository includes an interface library target, test executable, and example executables.</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-language">Bash</span>
+                                <button class="copy-button" type="button" aria-label="Copy code block">Copy</button>
+                            </div>
+                            <pre><code>mkdir build
 cd build
 cmake ..
 cmake --build .
 ctest --output-on-failure</code></pre>
+                        </div>
+                    </div>
 
-                <h3>Direct test build</h3>
-                <pre><code>g++ -std=c++17 -Wall -Wextra -Wpedantic tests/test_bst.cpp -Iinclude -o test_bst
-./test_bst</code></pre>
+                    <div class="section-block" id="next-steps">
+                        <h2 class="section-heading">Next steps</h2>
+                        <ul class="list-tight">
+                            <li>Browse the <a href="api-reference.html">API Reference</a> to understand insertion, iterators, and utility methods.</li>
+                            <li>Check the <a href="examples.html">Examples</a> page for custom comparators and traversal helpers.</li>
+                            <li>Read the <a href="performance.html">Performance</a> page before using the container with sorted input patterns.</li>
+                        </ul>
+                    </div>
 
-                <h2 id="notes">Notes</h2>
-                <ul>
-                    <li>The tree stores unique values only.</li>
-                    <li>Ordering is controlled by the <code>Compare</code> template parameter.</li>
-                    <li>This is a normal Binary Search Tree, not an AVL tree or Red-Black tree.</li>
-                </ul>
-            </main>
-        </div>
+                    <nav class="prev-next" aria-label="Page navigation">
+                        <a class="prev-next-card" href="index.html">
+                            <span class="prev-next-label">Previous</span>
+                            <span class="prev-next-title">Overview</span>
+                        </a>
+                        <a class="prev-next-card" href="api-reference.html">
+                            <span class="prev-next-label">Next</span>
+                            <span class="prev-next-title">API Reference</span>
+                        </a>
+                    </nav>
+                </section>
+
+                <aside class="page-toc" aria-label="On this page">
+                    <p class="page-toc-title">On this page</p>
+                    <ol class="toc-list">
+                        <li><a class="toc-link" href="#requirements">Requirements</a></li>
+                        <li><a class="toc-link" href="#installation">Installation</a></li>
+                        <li><a class="toc-link" href="#quick-example">Quick example</a></li>
+                        <li><a class="toc-link" href="#compile">Direct compiler build</a></li>
+                        <li><a class="toc-link" href="#cmake-build">CMake build</a></li>
+                        <li><a class="toc-link" href="#next-steps">Next steps</a></li>
+                    </ol>
+                </aside>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="site-footer-card">
+                <div>
+                    <p class="footer-title">BinarySearchTree.h</p>
+                    <p class="footer-text">Header-only C++17 Binary Search Tree library.</p>
+                    <p class="footer-note">Built for learning and lightweight C++ projects.</p>
+                </div>
+                <div>
+                    <p class="footer-title">Documentation</p>
+                    <ul class="footer-list">
+                        <li><a class="footer-link" href="index.html">Overview</a></li>
+                        <li><a class="footer-link" href="getting-started.html">Getting Started</a></li>
+                        <li><a class="footer-link" href="api-reference.html">API Reference</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="footer-title">Project</p>
+                    <ul class="footer-list">
+                        <li><a class="footer-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a></li>
+                        <li><a class="footer-link" href="../LICENSE">License</a></li>
+                        <li><a class="footer-link" href="examples.html">Examples</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
     </div>
+
+    <script src="assets/site.js"></script>
 </body>
 </html>

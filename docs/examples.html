@@ -6,78 +6,251 @@
     <title>Examples | BinarySearchTree.h</title>
     <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
-    <div class="page">
-        <header class="site-header">
-            <div class="topbar">
-                <a class="brand" href="../index.html">
-                    <small>Header-only C++17 Library</small>
-                    <strong>BinarySearchTree.h</strong>
-                </a>
-                <nav class="nav">
-                    <a href="index.html">Overview</a>
-                    <a href="getting-started.html">Getting Started</a>
-                    <a href="api-reference.html">API Reference</a>
-                    <a href="examples.html">Examples</a>
-                    <a href="performance.html">Performance</a>
-                </nav>
+<body class="doc-page" data-page="examples">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-navbar">
+        <div class="site-navbar-inner">
+            <a class="brand" href="../index.html" aria-label="BinarySearchTree.h home">
+                <span class="brand-title">BinarySearchTree.h</span>
+                <span class="brand-subtitle">Header-only C++17 library</span>
+            </a>
+            <div class="navbar-spacer"></div>
+            <nav class="navbar-links" aria-label="Primary navigation">
+                <a class="navbar-link" data-page-link="overview" href="index.html">Overview</a>
+                <a class="navbar-link" data-page-link="getting-started" href="getting-started.html">Getting Started</a>
+                <a class="navbar-link" data-page-link="api-reference" href="api-reference.html">API Reference</a>
+                <a class="navbar-link" data-page-link="examples" href="examples.html">Examples</a>
+                <a class="navbar-link" data-page-link="performance" href="performance.html">Performance</a>
+                <a class="navbar-link github-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a>
+            </nav>
+            <button class="icon-button desktop-only" type="button" data-theme-toggle aria-label="Toggle theme" aria-pressed="false">Dark</button>
+            <button class="icon-button mobile-only" type="button" data-mobile-nav-toggle aria-label="Toggle navigation menu" aria-expanded="false">Menu</button>
+        </div>
+    </header>
+
+    <div class="shell">
+        <div class="mobile-sidebar" data-mobile-nav>
+            <div class="mobile-sidebar-inner">
+                <p class="mobile-sidebar-title">Documentation</p>
+                <a class="mobile-nav-link" data-page-link="overview" href="index.html">Overview</a>
+                <a class="mobile-nav-link" data-page-link="getting-started" href="getting-started.html">Getting Started</a>
+                <a class="mobile-nav-link" data-page-link="api-reference" href="api-reference.html">API Reference</a>
+                <a class="mobile-nav-link" data-page-link="examples" href="examples.html">Examples</a>
+                <a class="mobile-nav-link" data-page-link="performance" href="performance.html">Performance</a>
+                <a class="mobile-nav-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a>
+                <button class="icon-button" type="button" data-theme-toggle aria-label="Toggle theme" aria-pressed="false">Dark</button>
             </div>
-        </header>
+        </div>
 
-        <div class="main-grid">
-            <aside class="sidebar">
-                <h2>Examples</h2>
-                <a href="#basic">Basic Usage</a>
-                <a href="#custom">Custom Types</a>
-                <a href="#iterators">Iterators</a>
-                <a href="#traversal">Traversal</a>
-                <a href="#compile">Compile Commands</a>
-            </aside>
+        <main id="main-content" class="page-main">
+            <div class="layout-grid">
+                <aside class="sidebar" aria-label="Documentation sidebar">
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">Introduction</p>
+                        <a class="sidebar-link" data-page-link="overview" href="index.html">Overview</a>
+                        <a class="sidebar-link" data-page-link="getting-started" href="getting-started.html">Getting Started</a>
+                    </div>
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">API Reference</p>
+                        <div class="sidebar-sub-links">
+                            <a class="sidebar-sub-link" href="api-reference.html#class-template">BinarySearchTree</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#constructors">Constructors</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#assignment">Assignment</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#capacity">Capacity</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#modifiers">Modifiers</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#lookup">Lookup</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#iterators">Iterators</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#traversal">Traversal</a>
+                            <a class="sidebar-sub-link" href="api-reference.html#utilities">Utilities</a>
+                        </div>
+                    </div>
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">Guides</p>
+                        <a class="sidebar-link" data-page-link="examples" href="examples.html">Examples</a>
+                        <a class="sidebar-link" data-page-link="performance" href="performance.html">Performance</a>
+                        <a class="sidebar-link" href="performance.html#when-not-to-use">Limitations</a>
+                    </div>
+                    <div class="sidebar-group">
+                        <p class="sidebar-group-title">Project</p>
+                        <a class="sidebar-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a>
+                        <a class="sidebar-link" href="../LICENSE">License</a>
+                    </div>
+                </aside>
 
-            <main class="content-panel">
-                <h1>Usage Examples</h1>
-                <p>
-                    The repository includes buildable example programs in <code>examples/</code>. These snippets
-                    mirror those files and are intentionally small enough to paste into a test program.
-                </p>
+                <section class="page-panel">
+                    <header class="page-header">
+                        <div class="eyebrow">Examples</div>
+                        <h1 class="page-title">Usage patterns you can copy into real code</h1>
+                        <p class="page-summary">
+                            These examples mirror the repository examples while staying compact enough to skim on the docs site.
+                            They cover basic usage, custom comparators, custom objects, iterator navigation, and traversal helpers.
+                        </p>
+                    </header>
 
-                <h2 id="basic">Basic Usage</h2>
-                <pre><code>BinarySearchTree&lt;int&gt; tree = {8, 3, 10, 1, 6, 14, 4, 7, 13};
+                    <div class="section-block" id="basic-usage">
+                        <h2 class="section-heading">Basic usage</h2>
+                        <p>Start with an initializer list, insert one more value, erase a value, and iterate in sorted order.</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-language">C++</span>
+                                <button class="copy-button" type="button" aria-label="Copy code block">Copy</button>
+                            </div>
+                            <pre><code>BinarySearchTree&lt;int&gt; tree = {8, 3, 10, 1, 6, 14, 4, 7, 13};
 tree.insert(5);
 tree.erase(10);
 
 for (int value : tree) {
     std::cout &lt;&lt; value &lt;&lt; ' ';
 }</code></pre>
+                        </div>
+                    </div>
 
-                <h2 id="custom">Custom Objects and Comparators</h2>
-                <pre><code>struct BookTitleLess {
+                    <div class="section-block" id="custom-comparator">
+                        <h2 class="section-heading">Custom comparator</h2>
+                        <p>Define ordering outside the value type when you want descending order or domain-specific sorting.</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-language">C++</span>
+                                <button class="copy-button" type="button" aria-label="Copy code block">Copy</button>
+                            </div>
+                            <pre><code>struct DescendingInt {
+    bool operator()(int lhs, int rhs) const {
+        return lhs &gt; rhs;
+    }
+};
+
+BinarySearchTree&lt;int, DescendingInt&gt; tree;
+tree.insert(10);
+tree.insert(5);
+tree.insert(20);</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="section-block" id="custom-object">
+                        <h2 class="section-heading">Custom object</h2>
+                        <p>Use <code>emplace</code> with a custom type and comparator when storing richer records.</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-language">C++</span>
+                                <button class="copy-button" type="button" aria-label="Copy code block">Copy</button>
+                            </div>
+                            <pre><code>struct Book {
+    std::string title;
+    int year;
+};
+
+struct BookTitleLess {
     bool operator()(const Book&amp; lhs, const Book&amp; rhs) const {
         return lhs.title &lt; rhs.title;
     }
 };
 
 BinarySearchTree&lt;Book, BookTitleLess&gt; library;
-library.emplace("Dune", 1965);
-library.emplace("Foundation", 1951);</code></pre>
+library.emplace(Book{"Dune", 1965});
+library.emplace(Book{"Foundation", 1951});</code></pre>
+                        </div>
+                    </div>
 
-                <h2 id="iterators">Iterator Usage</h2>
-                <pre><code>auto lower = tree.lower_bound(23);
+                    <div class="section-block" id="iterator-usage">
+                        <h2 class="section-heading">Iterator usage</h2>
+                        <p>Iterators support ordered traversal, bound queries, and erase-by-position.</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-language">C++</span>
+                                <button class="copy-button" type="button" aria-label="Copy code block">Copy</button>
+                            </div>
+                            <pre><code>auto lower = tree.lower_bound(23);
 auto upper = tree.upper_bound(25);
 auto next = tree.erase(tree.find(25));</code></pre>
+                        </div>
+                    </div>
 
-                <h2 id="traversal">Traversal Helpers</h2>
-                <pre><code>tree.in_order_traversal([](const int value) {
+                    <div class="section-block" id="traversal-usage">
+                        <h2 class="section-heading">Traversal usage</h2>
+                        <p>Traversal helpers accept lambdas or other callable objects.</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-language">C++</span>
+                                <button class="copy-button" type="button" aria-label="Copy code block">Copy</button>
+                            </div>
+                            <pre><code>tree.in_order_traversal([](const int value) {
+    std::cout &lt;&lt; value &lt;&lt; ' ';
+});
+
+tree.pre_order_traversal([](const int value) {
     std::cout &lt;&lt; value &lt;&lt; ' ';
 });</code></pre>
+                        </div>
+                    </div>
 
-                <h2 id="compile">Suggested Compile Commands</h2>
-                <pre><code>g++ -std=c++17 -Wall -Wextra -Wpedantic examples/basic_usage.cpp -Iinclude -o basic_usage
+                    <div class="section-block" id="compile-commands">
+                        <h2 class="section-heading">Compile commands</h2>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-language">Bash</span>
+                                <button class="copy-button" type="button" aria-label="Copy code block">Copy</button>
+                            </div>
+                            <pre><code>g++ -std=c++17 -Wall -Wextra -Wpedantic examples/basic_usage.cpp -Iinclude -o basic_usage
 g++ -std=c++17 -Wall -Wextra -Wpedantic examples/custom_object.cpp -Iinclude -o custom_object
 g++ -std=c++17 -Wall -Wextra -Wpedantic examples/iterator_usage.cpp -Iinclude -o iterator_usage
 g++ -std=c++17 -Wall -Wextra -Wpedantic examples/traversal_usage.cpp -Iinclude -o traversal_usage</code></pre>
-            </main>
-        </div>
+                        </div>
+                    </div>
+
+                    <nav class="prev-next" aria-label="Page navigation">
+                        <a class="prev-next-card" href="api-reference.html">
+                            <span class="prev-next-label">Previous</span>
+                            <span class="prev-next-title">API Reference</span>
+                        </a>
+                        <a class="prev-next-card" href="performance.html">
+                            <span class="prev-next-label">Next</span>
+                            <span class="prev-next-title">Performance</span>
+                        </a>
+                    </nav>
+                </section>
+
+                <aside class="page-toc" aria-label="On this page">
+                    <p class="page-toc-title">On this page</p>
+                    <ol class="toc-list">
+                        <li><a class="toc-link" href="#basic-usage">Basic usage</a></li>
+                        <li><a class="toc-link" href="#custom-comparator">Custom comparator</a></li>
+                        <li><a class="toc-link" href="#custom-object">Custom object</a></li>
+                        <li><a class="toc-link" href="#iterator-usage">Iterator usage</a></li>
+                        <li><a class="toc-link" href="#traversal-usage">Traversal usage</a></li>
+                        <li><a class="toc-link" href="#compile-commands">Compile commands</a></li>
+                    </ol>
+                </aside>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="site-footer-card">
+                <div>
+                    <p class="footer-title">BinarySearchTree.h</p>
+                    <p class="footer-text">Header-only C++17 Binary Search Tree library.</p>
+                    <p class="footer-note">Built for learning and lightweight C++ projects.</p>
+                </div>
+                <div>
+                    <p class="footer-title">Documentation</p>
+                    <ul class="footer-list">
+                        <li><a class="footer-link" href="index.html">Overview</a></li>
+                        <li><a class="footer-link" href="getting-started.html">Getting Started</a></li>
+                        <li><a class="footer-link" href="api-reference.html">API Reference</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="footer-title">Project</p>
+                    <ul class="footer-list">
+                        <li><a class="footer-link" href="https://github.com/Brxj19/Binary-Search-Tree">GitHub</a></li>
+                        <li><a class="footer-link" href="../LICENSE">License</a></li>
+                        <li><a class="footer-link" href="performance.html">Performance</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
     </div>
+
+    <script src="assets/site.js"></script>
 </body>
 </html>
