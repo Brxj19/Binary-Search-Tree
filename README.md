@@ -1,106 +1,121 @@
-# BST.h: A Modern C++17 Binary Search Tree
+# BinarySearchTree.h
 
-[![Language](https://img.shields.io/badge/language-C%2B%2B17-blue.svg)](https://isocpp.org/)
+[![C++17](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://isocpp.org/)
+[![Header-only](https://img.shields.io/badge/library-header--only-success.svg)](#installation)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![CI](https://github.com/Brxj19/Binary-Search-Tree/actions/workflows/ci.yml/badge.svg)](https://github.com/Brxj19/Binary-Search-Tree/actions/workflows/ci.yml)
 
-`BST.h` is a modern, header-only C++17 library providing a node-based binary search tree. It is built with modern C++ practices, including smart pointers for automatic memory management (`std::unique_ptr`), move semantics, and emplacement for optimal performance.
-
-This library is ideal for scenarios where you need fast insertion, deletion, and lookup of sorted data.
-
-## `Documentation`
-Online Documentation of [BST.h Docs ](https://brxj19.github.io/Binary-Search-Tree/)
-
+A modern header-only C++17 Binary Search Tree library with smart-pointer memory management, STL-style iterators, traversal utilities, comparator support, and detailed documentation.
 
 ## Features
 
--   **Automatic Memory Management**: No manual `new` or `delete` required, thanks to `std::unique_ptr`.
--   **Sorted Order**: Elements are always kept in sorted order automatically.
--   **In-place Construction**: `emplace` functions construct objects directly in the tree, avoiding copies.
--   **STL-like Interface**: Follows standard library conventions for methods like `insert`, `find`, `begin`, `end`, etc.
--   **Bidirectional Iterators**: Allows for forward and backward traversal through the sorted elements.
--   **Build from Traversals**: Reconstruct a tree from pre-order/in-order or post-order/in-order traversals.
+- Header-only C++17 library
+- Smart-pointer-based memory management with `std::unique_ptr`
+- `insert`, `emplace`, `erase`, `find`, `contains`, `clear`
+- STL-style iterators and const iterators
+- Custom comparator support with `BinarySearchTree<T, Compare>`
+- Traversal helpers for in-order, pre-order, and post-order visits
+- Copy and move support
+- `lower_bound`, `upper_bound`, `min`, `max`, `height`, `to_vector`, `is_valid_bst`
+- Simple examples, tests, CMake support, and GitHub Actions CI
 
-## Getting Started
+## Important note
 
-### Prerequisites
+This is a plain Binary Search Tree, not a self-balancing AVL or Red-Black tree. For sorted input, operations can degrade to `O(N)`.
 
-A C++ compiler that supports the **C++17 standard** or newer (e.g., GCC 7+, Clang 5+).
+## Installation
 
-### Usage
+Download the repository and add the `include/` directory to your include path.
 
-Since this is a header-only library, there is no need to build it separately. Simply include [`bst.h`](bst.h) in your project and compile your source files with the C++17 standard enabled.
-
-#### Example compilation command:
-
-```bash
-g++ -std=c++17 your_main_file.cpp -o your_program
+```cpp
+#include <bst/bst.h>
 ```
 
-## Basic Usage
+A small root-level `bst.h` wrapper is also kept in the repository for backwards compatibility.
+
+### Git submodule
+
+```bash
+git submodule add https://github.com/Brxj19/Binary-Search-Tree.git external/Binary-Search-Tree
+```
+
+Then compile with `external/Binary-Search-Tree/include` on the include path.
+
+## Quick example
 
 ```cpp
 #include <iostream>
-#include "bst.h"
+#include <bst/bst.h>
 
 int main() {
-    // Create a tree using an initializer list
-    BinarySearchTree<int> bst = {50, 30, 70, 20, 40};
+    BinarySearchTree<int> tree = {8, 3, 10, 1, 6};
 
-    // Add an element
-    bst.insert(80);
+    tree.insert(14);
+    tree.erase(3);
 
-    // Iterate and print elements (always in sorted order)
-    std::cout << "Tree contents: ";
-    for (const auto& val : bst) {
-        std::cout << val << " ";
+    for (int value : tree) {
+        std::cout << value << ' ';
     }
-    // Output: 20 30 40 50 70 80
-    std::cout << std::endl;
-
-    // Check for an element
-    if (bst.contains(40)) {
-        std::cout << "The tree contains the value 40." << std::endl;
-    }
-
-    // Remove an element
-    bst.erase(30);
-
-    return 0;
+    std::cout << '\n';
 }
 ```
 
-## API Overview
+## Build and test
 
-A brief overview of the provided API. For detailed examples, see [`index.html`](index.html).
-
--   **Constructors**: Default, copy, move, initializer list, and from traversals.
--   **Capacity**: `size()`, `empty()`
--   **Modifiers**: `insert()`, `emplace()`, `erase()`, `clear()`
--   **Lookup**: `find()`, `contains()`
--   **Iterators**: `begin()`, `end()`, `cbegin()`, `cend()`
--   **Traversals**: `in_order_traversal()`, `pre_order_traversal()`, `post_order_traversal()`
-
-## Performance
-
-Performance depends on the height of the tree. For a balanced tree, operations are logarithmic. In the worst case (an unbalanced tree), they are linear.
-
-| Operation         | Average Case (Balanced) | Worst Case (Unbalanced) |
-| ----------------- | ----------------------- | ----------------------- |
-| Access / Search   | O(log N)                | O(N)                    |
-| Insertion         | O(log N)                | O(N)                    |
-| Deletion          | O(log N)                | O(N)                    |
-| `size()`, `empty()` | O(1)                    | O(1)                    |
-
-## Building and Running Tests
-
-The project includes a test suite in [`test.cpp`](test.cpp). To build and run the tests:
+### CMake
 
 ```bash
-# Compile the tests
-g++ -std=c++17 test.cpp -o test
-
-# Run the tests
-./test
+mkdir build
+cd build
+cmake ..
+cmake --build .
+ctest --output-on-failure
 ```
 
-On success, the output will be: `All BinarySearchTree tests passed successfully!`
+### Direct `g++`
+
+```bash
+g++ -std=c++17 -Wall -Wextra -Wpedantic tests/test_bst.cpp -Iinclude -o test_bst
+./test_bst
+```
+
+## Complexity
+
+| Operation | Average | Worst |
+| --- | --- | --- |
+| Search | `O(log N)` | `O(N)` |
+| Insert | `O(log N)` | `O(N)` |
+| Delete | `O(log N)` | `O(N)` |
+| Traversal | `O(N)` | `O(N)` |
+
+## Documentation
+
+GitHub Pages documentation: https://brxj19.github.io/Binary-Search-Tree/
+
+Repository docs:
+
+- [Overview](docs/index.md)
+- [Getting Started](docs/getting-started.md)
+- [API Reference](docs/api-reference.md)
+- [Examples](docs/examples.md)
+- [Performance](docs/performance.md)
+
+## Project structure
+
+```text
+Binary-Search-Tree/
+├── include/bst/bst.h
+├── examples/
+├── tests/test_bst.cpp
+├── docs/
+├── .github/workflows/ci.yml
+├── CMakeLists.txt
+├── README.md
+├── LICENSE
+├── CHANGELOG.md
+└── index.html
+```
+
+## License
+
+MIT License. See [LICENSE](LICENSE).
